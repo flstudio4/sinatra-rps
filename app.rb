@@ -18,7 +18,7 @@ get("/rock") do
   elsif cpu == "paper"
     @win_lost_tied = "We lost!"
   else
-    @win_lost_tied = "We win!"
+    @win_lost_tied = "We won!"
   end      
 
  erb(:rock)
@@ -34,7 +34,7 @@ get("/paper") do
   @win_lost_tied = ""
 
   if cpu == "rock"
-    @win_lost_tied = "We win!"
+    @win_lost_tied = "We won!"
   elsif cpu == "paper"
     @win_lost_tied = "We tied!"
   else
@@ -56,7 +56,7 @@ get("/scissors") do
   if cpu == "rock"
     @win_lost_tied = "We lost!"
   elsif cpu == "paper"
-    @win_lost_tied = "We win!"
+    @win_lost_tied = "We won!"
   else
     @win_lost_tied = "We tied!"
   end
