@@ -5,61 +5,22 @@ get("/") do
   erb(:main)
 end
 
-get("/rock") do
+get("/:page") do
+
   array = ["rock", "paper", "scissors"]
-  player = "rock"
+  @player = params.fetch("page")
   cpu = array[rand(0..2)]
-  @outcome = "We played #{player}!"
+  @outcome = "We played #{@player}!"
   @outcome2 = "They played #{cpu}!"
   @win_lost_tied = ""
 
-  if cpu == "rock"
-    @win_lost_tied = "We tied!"
-  elsif cpu == "paper"
+  if cpu == "rock" && @player == "scissors" || cpu == "paper" && @player == "rock" || cpu == "scissors" && @player == "paper"
     @win_lost_tied = "We lost!"
-  else
+  elsif cpu == "rock" && @player == "paper" || cpu == "paper" && @player == "scissors" || cpu == "scissors" && @player == "rock"
     @win_lost_tied = "We won!"
-  end      
-
- erb(:rock)
-end
-
-get("/paper") do
-
-  array = ["rock", "paper", "scissors"]
-  player = "paper"
-  cpu = array[rand(0..2)]
-  @outcome = "We played #{player}!"
-  @outcome2 = "They played #{cpu}!"
-  @win_lost_tied = ""
-
-  if cpu == "rock"
-    @win_lost_tied = "We won!"
-  elsif cpu == "paper"
-    @win_lost_tied = "We tied!"
-  else
-    @win_lost_tied = "We lost!"
-  end
-
-  erb(:paper)
-end
-
-get("/scissors") do
-
-  array = ["rock", "paper", "scissors"]
-  player = "scissors"
-  cpu = array[rand(0..2)]
-  @outcome = "We played #{player}!"
-  @outcome2 = "They played #{cpu}!"
-  @win_lost_tied = ""
-
-  if cpu == "rock"
-    @win_lost_tied = "We lost!"
-  elsif cpu == "paper"
-    @win_lost_tied = "We won!"
-  else
+  elsif cpu == "rock" && @player == "rock" || cpu == "paper" && @player == "paper" || cpu == "scissors" && @player == "scissors"
     @win_lost_tied = "We tied!"
   end
 
-  erb(:scissors)
+  erb(:page)
 end
